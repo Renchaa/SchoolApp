@@ -20,6 +20,6 @@ All data is modeled using Entity Framework and persisted in a relational databas
 
 - **ASP.NET Core MVC**
 - **Entity Framework Core**
-- **Razor Pages & HTML**
+- **HTML**
 - **Bootstrap** for responsive design
 - **Microsoft Identity** for user management
