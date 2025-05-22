@@ -1,0 +1,46 @@
+﻿@model Student
+
+<h1>Izveidot jaunu studentu</h1>
+
+<!-- Formas sākums, kas nosūta datus uz CreateStudent darbību Home kontrolierī -->
+<form asp-controller="Home" asp-action="CreateStudent" method="post">
+
+    <!-- Vārda (Name) ievades lauks -->
+    <div class="form-group">
+        <label for="Name">Vārds</label>
+        <input type="text" class="form-control" id="Name" asp-for="Name" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <!-- Uzvārda (Surname) ievades lauks -->
+    <div class="form-group">
+        <label for="Surname">Uzvārds</label>
+        <input type="text" class="form-control" id="Surname" asp-for="Surname" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <!-- Dzimuma (Gender) izvēles lauks -->
+    <div class="form-group">
+        <label for="Gender">Dzimums</label>
+        <select class="form-control" id="Gender" asp-for="Gender">
+            <option value="">Izvēlieties dzimumu</option>
+            <option value="Male">Vīrietis</option>
+            <option value="Female">Sieviete</option>
+        </select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <!-- Studenta identifikācijas numura (Student ID Number) ievades lauks -->
+    <div class="form-group">
+        <label for="StudentIdNumber">Studenta ID numurs</label>
+        <input type="text" class="form-control" id="StudentIdNumber" asp-for="StudentIdNumber" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="StudentIdNumber" class="text-danger"></span>
+    </div>
+
+    <!-- Poga, lai saglabātu jauno studentu -->
+    <button type="submit" class="btn btn-primary">Saglabāt</button>
+</form>

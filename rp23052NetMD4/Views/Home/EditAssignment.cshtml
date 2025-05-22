@@ -1,0 +1,38 @@
+﻿@model rp23052NetMD4.Models.Assignment
+
+<h1>Rediģēt uzdevumu</h1>
+
+<!-- Formas sākums, nosūta datus uz EditAssignment darbību Home kontrolierī -->
+<form asp-controller="Home" asp-action="EditAssignment" method="post">
+
+    <!-- Apraksta (Description) ievades lauks -->
+    <div class="form-group">
+        <label for="Description">Apraksts</label>
+        <input type="text" class="form-control" id="Description" asp-for="Description" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <!-- Termiņa (Deadline) ievades lauks -->
+    <div class="form-group">
+        <label for="Deadline">Termiņš</label>
+        <input type="date" class="form-control" id="Deadline" asp-for="Deadline" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Deadline" class="text-danger"></span>
+    </div>
+
+    <!-- Kursa (Course) izvēles lauks -->
+    <div class="form-group">
+        <label for="CourseId">Kurss</label>
+        <select class="form-control" id="CourseId" asp-for="CourseId" asp-items="ViewBag.Courses"></select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="CourseId" class="text-danger"></span>
+    </div>
+
+    <!-- Saglabāšanas poga -->
+    <button type="submit" class="btn btn-primary">Saglabāt</button>
+
+</form>
+
+<!-- Poga, lai atgrieztos pie uzdevumu saraksta -->
+<a asp-controller="Home" asp-action="Assignments" class="btn btn-secondary">Atpakaļ uz uzdevumu sarakstu</a>

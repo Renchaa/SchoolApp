@@ -1,0 +1,28 @@
+﻿@model IEnumerable<rp23052NetMD4.Models.Course>
+
+<h2 class="text-center">Kursu saraksts</h2>
+
+<!-- Tabula, kurā parādīti visi kursi un to pasniedzēji -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Kursa nosaukums</th>
+            <th>Pasniedzēja vārds un uzvārds</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iet cauri visiem kursiem, kas tiek nodoti kā modelis -->
+        @foreach (var course in Model)
+        {
+            <tr>
+                <!-- Parāda kursa nosaukumu -->
+                <td>@course.Name</td>
+                <!-- Parāda pasniedzēja vārdu un uzvārdu, ja pasniedzējs nav null -->
+                <td>@course.Teacher?.Name @course.Teacher?.Surname</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Poga, lai atgrieztos uz galveno lapu -->
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Atpakaļ uz galveno lapu</a>

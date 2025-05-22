@@ -1,0 +1,46 @@
+﻿@model rp23052NetMD4.Models.Submission
+
+<h1>Rediģēt iesniegumu</h1>
+
+<!-- Formas sākums, nosūta datus uz EditSubmission darbību Home kontrolierī -->
+<form asp-controller="Home" asp-action="EditSubmission" method="post">
+
+    <!-- Uzdevuma (Assignment) izvēles lauks -->
+    <div class="form-group">
+        <label for="AssignmentId">Uzdevums</label>
+        <select class="form-control" id="AssignmentId" asp-for="AssignmentId" asp-items="ViewBag.Assignments"></select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="AssignmentId" class="text-danger"></span>
+    </div>
+
+    <!-- Studenta (Student) izvēles lauks -->
+    <div class="form-group">
+        <label for="StudentId">Students</label>
+        <select class="form-control" id="StudentId" asp-for="StudentId" asp-items="ViewBag.Students"></select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <!-- Iesniegšanas laika ievades lauks -->
+    <div class="form-group">
+        <label for="SubmissionTime">Iesniegšanas laiks</label>
+        <input type="datetime-local" class="form-control" id="SubmissionTime" asp-for="SubmissionTime" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="SubmissionTime" class="text-danger"></span>
+    </div>
+
+    <!-- Punktu skaita ievades lauks -->
+    <div class="form-group">
+        <label for="Score">Punkti</label>
+        <input type="number" class="form-control" id="Score" asp-for="Score" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+
+    <!-- Saglabāšanas poga -->
+    <button type="submit" class="btn btn-primary">Saglabāt</button>
+
+</form>
+
+<!-- Poga, lai atgrieztos pie iesniegumu saraksta -->
+<a asp-controller="Home" asp-action="Submissions" class="btn btn-secondary">Atpakaļ uz iesniegumu sarakstu</a>

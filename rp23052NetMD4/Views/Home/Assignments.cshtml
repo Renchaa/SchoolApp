@@ -1,0 +1,54 @@
+﻿@model IEnumerable<rp23052NetMD4.Models.Assignment>
+
+<h2 class="text-center">Uzdevumu saraksts</h2>
+
+<!-- Poga "Create New Assignment", ja lietotājs ir autentificēts -->
+@if (User.Identity.IsAuthenticated) // Pārbauda, vai lietotājs ir autentificēts
+{
+    <a asp-controller="Home" asp-action="CreateAssignment" class="btn btn-success mb-3">Izveidot jaunu uzdevumu</a>
+}
+
+<!-- Tabula, kurā tiek parādīti uzdevumi ar aprakstu, termiņu un kursa nosaukumu -->
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Apraksts</th>
+            <th>Termiņš</th>
+            <th>Kursa nosaukums</th>
+            <th>Darbības</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iet cauri visiem uzdevumiem, kas tiek nodoti kā modelis -->
+        @foreach (var assignment in Model)
+        {
+            <tr>
+                <!-- Parāda uzdevuma aprakstu -->
+                <td>@assignment.Description</td>
+
+                <!-- Parāda uzdevuma termiņu formātā "yyyy-MM-dd" -->
+                <td>@assignment.Deadline.ToString("yyyy-MM-dd")</td>
+
+                <!-- Parāda kursa nosaukumu, ja kurss nav null -->
+                <td>@assignment.Course?.Name</td>
+
+                <td>
+                    <!-- Parāda "Edit" un "Delete" pogas, ja lietotājs ir autentificēts -->
+                    @if (User.Identity.IsAuthenticated) // Pārbauda, vai lietotājs ir autentificēts
+                    {
+                        <!-- Edit poga -->
+                        <a asp-controller="Home" asp-action="EditAssignment" asp-route-id="@assignment.Id" class="btn btn-primary">Rediģēt</a>
+
+                        <!-- Delete poga -->
+                        <form asp-controller="Home" asp-action="DeleteAssignment" asp-route-id="@assignment.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Dzēst</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Poga atpakaļ uz galveno lapu -->
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Atpakaļ uz galveno lapu</a>

@@ -1,0 +1,45 @@
+﻿@model rp23052NetMD4.Models.Submission
+
+<h1>Izveidot jaunu iesniegumu</h1>
+
+<!-- Formas sākums, nosūta datus uz CreateSubmission darbību Home kontrolierī -->
+<form asp-controller="Home" asp-action="CreateSubmission" method="post">
+
+    <!-- Uzdevuma (Assignment) izvēles lauks -->
+    <div class="form-group">
+        <label for="AssignmentId">Uzdevums</label>
+        <select class="form-control" id="AssignmentId" asp-for="AssignmentId" asp-items="ViewBag.Assignments"></select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="AssignmentId" class="text-danger"></span>
+    </div>
+
+    <!-- Studenta (Student) izvēles lauks -->
+    <div class="form-group">
+        <label for="StudentId">Students</label>
+        <select class="form-control" id="StudentId" asp-for="StudentId" asp-items="ViewBag.Students"></select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <!-- Iesnieguma laika (Submission Time) ievades lauks -->
+    <div class="form-group">
+        <label for="SubmissionTime">Iesniegšanas laiks</label>
+        <input type="datetime-local" class="form-control" id="SubmissionTime" asp-for="SubmissionTime" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="SubmissionTime" class="text-danger"></span>
+    </div>
+
+    <!-- Punktu skaita (Score) ievades lauks -->
+    <div class="form-group">
+        <label for="Score">Punktu skaits</label>
+        <input type="number" class="form-control" id="Score" asp-for="Score" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Score" class="text-danger"></span>
+    </div>
+
+    <!-- Poga, lai izveidotu jaunu iesniegumu -->
+    <button type="submit" class="btn btn-primary">Izveidot</button>
+</form>
+
+<!-- Poga, lai atgrieztos uz iesniegumu saraksta lapu -->
+<a asp-controller="Home" asp-action="Submissions" class="btn btn-secondary">Atpakaļ uz iesniegumu sarakstu</a>

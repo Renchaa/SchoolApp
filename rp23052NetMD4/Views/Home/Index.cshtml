@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using rp23052NetMD4.Models
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home Page";
+    var isClient = false;
+    //Bij domāta atsevišķā loģika priekš klienta un admina
+    if (SignInManager.IsSignedIn(User))
+    {
+        
+        isClient = User.IsInRole("client");
+    }
+}
+<h1 class="text-center">Welcome to the Entity Management System</h1>
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="btn-group-vertical">
+        <!-- Poga studentiem -->
+        <a asp-controller="Home" asp-action="Students" class="btn btn-primary mb-2">Show Students</a>
+
+        <!-- Poga uzdevumiem -->
+        <a asp-controller="Home" asp-action="Assignments" class="btn btn-primary mb-2">Show Assignments</a>
+
+        <!-- Poga iesniegumiem -->
+        <a asp-controller="Home" asp-action="Submissions" class="btn btn-primary mb-2">Show Submissions</a>
+
+        <!-- Poga skolotājiem -->
+        <a asp-controller="Home" asp-action="Teachers" class="btn btn-primary mb-2">Show Teachers</a>
+
+        <!-- Poga kursiem -->
+        <a asp-controller="Home" asp-action="Courses" class="btn btn-primary mb-2">Show Courses</a>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,47 @@
+﻿@model Student
+
+<h1>Rediģēt studentu</h1>
+
+<!-- Formas sākums, nosūta datus uz EditStudent darbību Home kontrolierī -->
+<form asp-controller="Home" asp-action="EditStudent" method="post">
+
+    <!-- Vārda (Name) ievades lauks -->
+    <div class="form-group">
+        <label for="Name">Vārds</label>
+        <input type="text" class="form-control" id="Name" asp-for="Name" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <!-- Uzvārda (Surname) ievades lauks -->
+    <div class="form-group">
+        <label for="Surname">Uzvārds</label>
+        <input type="text" class="form-control" id="Surname" asp-for="Surname" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <!-- Dzimuma (Gender) izvēles lauks -->
+    <div class="form-group">
+        <label for="Gender">Dzimums</label>
+        <select class="form-control" id="Gender" asp-for="Gender">
+            <option value="">Izvēlēties dzimumu</option>
+            <option value="Male">Vīrietis</option>
+            <option value="Female">Sieviete</option>
+        </select>
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <!-- Studenta ID ievades lauks -->
+    <div class="form-group">
+        <label for="StudentIdNumber">Studenta ID</label>
+        <input type="text" class="form-control" id="StudentIdNumber" asp-for="StudentIdNumber" />
+        <!-- Validācijas kļūdu ziņojums -->
+        <span asp-validation-for="StudentIdNumber" class="text-danger"></span>
+    </div>
+
+    <!-- Saglabāšanas poga -->
+    <button type="submit" class="btn btn-primary">Saglabāt</button>
+
+</form>

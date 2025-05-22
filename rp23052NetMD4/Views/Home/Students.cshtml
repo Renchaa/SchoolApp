@@ -1,0 +1,54 @@
+﻿@model IEnumerable<rp23052NetMD4.Models.Student>
+
+<h2 class="text-center">Studentu saraksts</h2>
+
+<!-- Pārbauda, vai lietotājs ir autentificēts -->
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- Poga jauna studenta pievienošanai, pieejama tikai autentificētiem lietotājiem -->
+    <a asp-controller="Home" asp-action="CreateStudent" class="btn btn-success mb-3">Izveidot jaunu studentu</a>
+}
+
+<!-- Tabula studentu saraksta attēlošanai -->
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <!-- Tabulas virsraksti -->
+            <th>Id</th>
+            <th>Vārds</th>
+            <th>Uzvārds</th>
+            <th>Dzimums</th>
+            <th>Studenta ID</th>
+            <th>Darbības</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cikls, kas izveido tabulas rindu katram studentam -->
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td> <!-- Studenta ID -->
+                <td>@student.Name</td> <!-- Vārds -->
+                <td>@student.Surname</td> <!-- Uzvārds -->
+                <td>@student.Gender</td> <!-- Dzimums -->
+                <td>@student.StudentIdNumber</td> <!-- Studenta ID numurs -->
+                <td>
+                    <!-- Pārbauda, vai lietotājs ir autentificēts, lai parādītu pogas -->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <!-- Rediģēšanas poga -->
+                        <a asp-controller="Home" asp-action="EditStudent" asp-route-id="@student.Id" class="btn btn-primary">Rediģēt</a>
+
+                        <!-- Dzēšanas poga (veido POST pieprasījumu) -->
+                        <form asp-controller="Home" asp-action="DeleteStudent" asp-route-id="@student.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Dzēst</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Poga atgriešanai uz galveno lapu -->
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Atpakaļ uz galveno lapu</a>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<rp23052NetMD4.Models.Teacher>
+
+<h2 class="text-center">Skolotāju saraksts</h2>
+
+<!-- Tabula, kurā tiek attēlots skolotāju saraksts -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <!-- Kolonnu virsraksti -->
+            <th>Vārds</th>
+            <th>Uzvārds</th>
+            <th>Dzimums</th>
+            <th>Līguma datums</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Cikls, kas izveido tabulas rindu katram skolotājam -->
+        @foreach (var teacher in Model)
+        {
+            <tr>
+                <td>@teacher.Name</td> <!-- Skolotāja vārds -->
+                <td>@teacher.Surname</td> <!-- Skolotāja uzvārds -->
+                <td>@teacher.Gender</td> <!-- Skolotāja dzimums -->
+                <td>@teacher.ContractDate.ToString("yyyy-MM-dd")</td> <!-- Līguma datums formatēts -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Poga, lai atgrieztos uz galveno lapu -->
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Atpakaļ uz galveno lapu</a>
